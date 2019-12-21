@@ -23,15 +23,16 @@ public class LoginServlet extends HttpServlet {
 	
 	
 	public void doPost(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException {
-		AdminDao adminDao = new AdminDao();
+		
 		String name = request.getParameter("username");
 		String password = request.getParameter("password");
 		int type = Integer.parseInt(request.getParameter("type"));
 		
 		
-		
+		String loginStatus = "loginFaild";
 		switch (type) {
 		case 1:{
+			AdminDao adminDao = new AdminDao();
 			Admin admin = adminDao.login(name, password);
 			adminDao.closeCon();//及时关闭数据库
 			
@@ -42,7 +43,7 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", admin);
 			session.setAttribute("usertype", type);
-			response.getWriter().write("admin");
+			loginStatus = "loginSuccess";
 			break;
 		}
 		/*case 2:{
@@ -51,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 		default:
 			break;
 		}
-	
+		response.getWriter().write("loginSuccess");
 	}
 	
 }

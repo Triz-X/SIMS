@@ -47,7 +47,7 @@
 				success: function(msg){
 					if("loginError" == msg){
 						$.messager.alert("消息提醒", "用户名或密码错误!", "warning");
-					} else if("admin" == msg){
+					} else if("loginSuccess" == msg){
 						window.location.href = "SystemServlet?method=toAdminView";
 					} else if("student" == msg){
 						window.location.href = "SystemServlet?method=toStudentView";
