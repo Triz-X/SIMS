@@ -42,4 +42,24 @@
   	<url-pattern>/SystemServlet</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<description>学生信息管理</description>
+  	<servlet-name>StudentServlet</servlet-name>
+  	<servlet-class>com.Triz.SIMS.servlet.StudentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>StudentServlet</servlet-name>
+  	<url-pattern>/StudentServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<description>班级信息管理</description>
+  	<servlet-name>ClazzServlet</servlet-name>
+  	<servlet-class>com.Triz.SIMS.servlet.ClazzServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ClazzServlet</servlet-name>
+  	<url-pattern>/ClazzServlet</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

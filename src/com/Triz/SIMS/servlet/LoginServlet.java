@@ -23,7 +23,11 @@ public class LoginServlet extends HttpServlet {
 	
 	
 	public void doPost(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException {
-		
+		String method = request.getParameter("method");
+		if("logout".equals(method)){
+			logout(request,response);
+			return;
+		}
 		String name = request.getParameter("username");
 		String password = request.getParameter("password");
 		int type = Integer.parseInt(request.getParameter("type"));
@@ -42,17 +46,23 @@ public class LoginServlet extends HttpServlet {
 			}
 			HttpSession session = request.getSession();
 			session.setAttribute("user", admin);
-			session.setAttribute("usertype", type);
+			session.setAttribute("userType", type);
 			loginStatus = "loginSuccess";
+			
 			break;
 		}
-		/*case 2:{
-			
+		/*case 2:{	
 		}*/
 		default:
 			break;
 		}
-		response.getWriter().write("loginSuccess");
+		response.getWriter().write(loginStatus);
+	}
+	
+	private  void logout(HttpServletRequest request,HttpServletResponse response)throws IOException {
+		request.getSession().removeAttribute("user");
+		request.getSession().removeAttribute("userType");
+		response.sendRedirect("index.jsp");
 	}
 	
 }

@@ -17,10 +17,15 @@ public class SystemServlet extends HttpServlet {
 		doPost(request,response);
 	}
 	
-	public void doPost(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException {
+	public void doPost(HttpServletRequest request,HttpServletResponse response)throws  IOException {
 		HttpSession session = request.getSession();
 		
 		
-		request.getRequestDispatcher("MVC-View/system.jsp").forward(request, response);
+		try {
+			request.getRequestDispatcher("MVC-View/system.jsp").forward(request, response);
+		} catch (ServletException e) {
+			
+			e.printStackTrace();
+		}
 	}
 }

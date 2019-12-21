@@ -49,10 +49,8 @@
 						$.messager.alert("消息提醒", "用户名或密码错误!", "warning");
 					} else if("loginSuccess" == msg){
 						window.location.href = "SystemServlet?method=toAdminView";
-					} else if("student" == msg){
-						window.location.href = "SystemServlet?method=toStudentView";
-					} else if("teacher" == msg){
-						window.location.href = "SystemServlet?method=toTeacherView";
+					} else {
+						alert(msg);
 					}
 				}
 				
