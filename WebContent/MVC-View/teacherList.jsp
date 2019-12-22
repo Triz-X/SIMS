@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -339,8 +339,6 @@
 				$("#edit_sex").textbox('setValue', selectRow.sex);
 				$("#edit_phone").textbox('setValue', selectRow.mobile);
 				$("#edit_qq").textbox('setValue', selectRow.qq);
-				$("#edit_photo").attr("src", "PhotoServlet?method=getPhoto&type=2&tid="+selectRow.id);
-				$("#set-photo-id").val(selectRow.id);
 				var clazzid = selectRow.clazzId;
 				setTimeout(function(){
 					$("#edit_clazzList").combobox('setValue', clazzid);
@@ -362,25 +360,7 @@
 	  	});
 	});
 	
-	//上传图片按钮事件
-	$("#upload-photo-btn").click(function(){
-		
-	});
-	function uploadPhoto(){
-		var action = $("#uploadForm").attr('action');
-		var pos = action.indexOf('tid');
-		if(pos != -1){
-			action = action.substring(0,pos-1);
-		}
-		$("#uploadForm").attr('action',action+'&tid='+$("#set-photo-id").val());
-		$("#uploadForm").submit();
-		setTimeout(function(){
-			var message =  $(window.frames["photo_target"].document).find("#message").text();
-			$.messager.alert("消息提醒",message,"info");
-			
-			$("#edit_photo").attr("src", "PhotoServlet?method=getPhoto&tid="+$("#set-photo-id").val());
-		}, 1500)
-	}
+	
 	</script>
 </head>
 <body>
@@ -407,9 +387,7 @@
 	
 	<!-- 添加窗口 -->
 	<div id="addDialog" style="padding: 10px;">  
-   		<div style=" position: absolute; margin-left: 560px; width: 200px; border: 1px solid #EEF4FF" id="photo">
-    		<img alt="照片" style="max-width: 200px; max-height: 400px;" title="照片" src="PhotoServlet?method=getPhoto" />
-	    </div> 
+   		
    		<form id="addForm" method="post">
 	    	<table id="addTable" border=0 style="width:800px; table-layout:fixed;" cellpadding="6" >
 	    		<tr>
@@ -446,15 +424,7 @@
 	
 	<!-- 修改窗口 -->
 	<div id="editDialog" style="padding: 10px">
-		<div style=" position: absolute; margin-left: 560px; width: 200px; border: 1px solid #EEF4FF">
-	    	<img id="edit_photo" alt="照片" style="max-width: 200px; max-height: 400px;" title="照片" src="" />
-	    	<form id="uploadForm" method="post" enctype="multipart/form-data" action="PhotoServlet?method=SetPhoto" target="photo_target">
-	    		<!-- StudentServlet?method=SetPhoto -->
-	    		<input type="hidden" name="tid" id="set-photo-id">
-		    	<input class="easyui-filebox" name="photo" data-options="prompt:'选择照片'" style="width:200px;">
-		    	<input id="upload-photo-btn" onClick="uploadPhoto()" class="easyui-linkbutton" style="width: 50px; height: 24px;" type="button" value="上传"/>
-		    </form>
-	    </div>   
+		  
     	<form id="editForm" method="post">
 	    	<table id="editTable" border=0 style="width:800px; table-layout:fixed;" cellpadding="6" >
 	    		<tr>
@@ -483,7 +453,6 @@
 	    	</table>
 	    </form>
 	</div>
-	
-<iframe id="photo_target" name="photo_target"></iframe>  	
+		
 </body>
 </html>

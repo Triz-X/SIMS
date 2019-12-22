@@ -10,7 +10,6 @@
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 <link rel="shortcut icon" href="favicon.ico"/>
 <link rel="bookmark" href="favicon.ico"/>
-<link href="h-ui/css/H-ui.trizLoginStyle.css" rel="stylesheet" type="text/css" />
 <link href="h-ui/css/H-ui.min.css" rel="stylesheet" type="text/css" />
 <link href="h-ui/css/H-ui.login.css" rel="stylesheet" type="text/css" />
 <link href="h-ui/lib/icheck/icheck.css" rel="stylesheet" type="text/css" />
@@ -27,17 +26,10 @@
 
 <script type="text/javascript">
 	$(function(){
+		
+		
 		//登录
 		$("#submitBtn").click(function(){
-			if($("#radio-2").attr("checked") && "${systemInfo.forbidStudent}" == 1){
-				$.messager.alert("消息提醒", "学生暂不能登录系统！", "warning");
-				return;
-			}
-			if($("#radio-3").attr("checked") && "${systemInfo.forbidTeacher}" == 1){
-				$.messager.alert("消息提醒", "教师暂不能登录系统！", "warning");
-				return;
-			}
-			
 			var data = $("#form").serialize();
 			$.ajax({
 				type: "post",
@@ -49,9 +41,9 @@
 						$.messager.alert("消息提醒", "用户名或密码错误!", "warning");
 					} else if("loginSuccess" == msg){
 						window.location.href = "SystemServlet?method=toAdminView";
-					} else {
+					} else{
 						alert(msg);
-					}
+					} 
 				}
 				
 			});
@@ -64,9 +56,8 @@
 		});
 	})
 </script> 
-
-<title>登录|高校学生信息管理系统</title>
-<meta name="keywords" content="学生成绩管理系统">
+<title>登录|学生信息管理系统</title>
+<meta name="keywords" content="学生信息管理系统">
 </head>
 <body>
 
@@ -79,7 +70,7 @@
       <div class="row cl">
         <label class="form-label col-3"><i class="Hui-iconfont">&#xe60d;</i></label>
         <div class="formControls col-8">
-          <input id="" name="username" type="text" placeholder="账户" class="input-text size-L">
+          <input id="" name="account" type="text" placeholder="账户" class="input-text size-L">
         </div>
       </div>
       <div class="row cl">
@@ -88,7 +79,6 @@
           <input id="" name="password" type="password" placeholder="密码" class="input-text size-L">
         </div>
       </div>
-      
       
       
       <div class="mt-20 skin-minimal" style="text-align: center;">
@@ -107,14 +97,14 @@
 	</div>
       
       <div class="row">
-        <div class="formControls col-8 col-offset-3" align="center">
-          <input id="submitBtn" type="button" class="btn btn-success radius size-L" value="&emsp;&emsp;Sign&emsp;in&emsp;&emsp;">
+        <div class="formControls col-8 col-offset-3">
+          <input id="submitBtn" type="button" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
         </div>
       </div>
     </form>
   </div>
 </div>
-<div class="footer">Copyright &nbsp; Triz-X @ Zc </div>
+<div class="footer">Copyright &nbsp; artisan @ Triz-X </div>
 
 
 </body>
