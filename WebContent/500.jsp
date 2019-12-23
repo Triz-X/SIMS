@@ -10,8 +10,8 @@
 </head>
 <body>
 	<div class="page-404 text-c">
-		<p class="error-title"><i class="Hui-iconfont">&#xe688;</i>500</p>
-		<p class="error-description">不好意思，服务端错误啦~</p>
+		<p class="error-title"><i class="Hui-iconfont">&#xe664;</i>500</p>
+		<p class="error-description">服务端出现错误</p>
 	</div>
 </body>
 </html>

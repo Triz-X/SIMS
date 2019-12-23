@@ -33,11 +33,11 @@
 	    	width: 500,
 	    	height: 300,
 	    	iconCls: "icon-add",
-	    	modal: true,
-	    	collapsible: false,
-	    	minimizable: false,
-	    	maximizable: false,
-	    	draggable: true,
+	    	modal: true,//定义窗口是否是一个模式窗口
+	    	collapsible: false,//是否显示可折叠定义按钮
+	    	minimizable: false,//是否显示最小化按钮	
+	    	maximizable: false,//是否显示最大化按钮
+	    	draggable: true,//窗口是否能拖动
 	    	closed: true,
 	    	buttons: [
 	  	    		{

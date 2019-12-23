@@ -17,7 +17,6 @@ import com.Triz.SIMS.dao.TeacherDao;
 import com.Triz.SIMS.model.Admin;
 import com.Triz.SIMS.model.Student;
 import com.Triz.SIMS.model.Teacher;
-import com.Triz.SIMS.util.StringUtil;
 
 
 public class LoginServlet extends HttpServlet {

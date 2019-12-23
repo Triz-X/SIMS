@@ -66,7 +66,7 @@
 </div>
 <div class="loginWraper">
   <div id="loginform" class="loginBox">
-    <form id="form" class="form form-horizontal" method="post">
+    <form id="form" class="form form-horizontal" method="post" style="padding-right:150px">
       <div class="row cl">
         <label class="form-label col-3"><i class="Hui-iconfont">&#xe60d;</i></label>
         <div class="formControls col-8">
@@ -81,8 +81,8 @@
       </div>
       
       
-      <div class="mt-20 skin-minimal" style="text-align: center;">
-		<div class="radio-box">
+      <div class="mt-20 skin-minimal" style="padding-left:140px" style="text-align: center;" >
+		<div class="radio-box" >
 			<input type="radio" id="radio-2" name="type" checked value="2" />
 			<label for="radio-1">学生</label>
 		</div>
@@ -97,14 +97,13 @@
 	</div>
       
       <div class="row">
-        <div class="formControls col-8 col-offset-3">
-          <input id="submitBtn" type="button" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
+        <div class="formControls col-8 col-offset-3" align="center">
+          &emsp;<input id="submitBtn" type="button" class="btn btn-success-outline radius size-L" value="&emsp;&emsp;登&emsp;&emsp;&emsp;录&emsp;&emsp;">
         </div>
       </div>
     </form>
   </div>
 </div>
-<div class="footer">Copyright &nbsp; artisan @ Triz-X </div>
 
 
 </body>

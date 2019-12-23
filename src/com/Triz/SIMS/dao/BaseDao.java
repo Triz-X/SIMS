@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.Triz.SIMS.util.DBUtil;
+import com.Triz.SIMS.util.DbUtil;
 
 public class BaseDao {
-	private DBUtil dbUtil = new DBUtil();
+	private DbUtil dbUtil = new DbUtil();
 	public void closeCon(){
 		dbUtil.closeCon();
 	}

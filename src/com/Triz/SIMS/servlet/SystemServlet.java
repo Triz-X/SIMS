@@ -37,7 +37,7 @@ public class SystemServlet extends HttpServlet {
 			return;
 		}
 		try {
-			request.getRequestDispatcher("view/system.jsp").forward(request, response);
+			request.getRequestDispatcher("MVC-View/system.jsp").forward(request, response);
 		} catch (ServletException e) {
 			e.printStackTrace();
 		}
