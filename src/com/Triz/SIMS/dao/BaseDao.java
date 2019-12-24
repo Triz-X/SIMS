@@ -14,7 +14,10 @@ public class BaseDao {
 	public void closeCon(){
 		dbUtil.closeCon();
 	}
-	
+	/**
+	 * 
+	 * 基础查询，多条查询
+	 */
 	public ResultSet query(String sql){
 		try {
 			PreparedStatement prepareStatement = dbUtil.getConnection().prepareStatement(sql);
@@ -25,7 +28,9 @@ public class BaseDao {
 		}
 		return null;
 	} 
-	
+	/**
+	 * 数据库的添加与修改
+	 */
 	public boolean update(String sql){
 		try {
 			return dbUtil.getConnection().prepareStatement(sql).executeUpdate() > 0;

@@ -44,7 +44,6 @@
  						if (row.clazzId){
  							var clazzList = $("#clazzList").combobox("getData");
  							for(var i=0;i<clazzList.length;i++ ){
- 								//console.log(clazzList[i]);
  								if(row.clazzId == clazzList[i].id)return clazzList[i].name;
  							}
  							return row.clazzId;
@@ -111,7 +110,7 @@
 									$("#dataList").datagrid("reload");
 									$("#dataList").datagrid("uncheckAll");
 								} else{
-									$.messager.alert("消息提醒","删除失败!","warning");
+									$.messager.alert("消息提醒","删除失败!老师存在其他课程！","warning");
 									return;
 								}
 							}
@@ -132,9 +131,7 @@
 		  		method: "post",
 		  		url: "ClazzServlet?method=getClazzList&t="+new Date().getTime()+"&from=combox",
 		  		onChange: function(newValue, oldValue){
-		  			//加载班级下的学生
-		  			//$('#dataList').datagrid("options").queryParams = {clazzid: newValue};
-		  			//$('#dataList').datagrid("reload");
+		  		
 		  		}
 		  	});
 	  	}

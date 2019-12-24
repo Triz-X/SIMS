@@ -77,4 +77,56 @@
   	<servlet-name>TeacherServlet</servlet-name>
   	<url-pattern>/TeacherServlet</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<description>课程信息管理</description>
+  	<servlet-name>CourseServlet</servlet-name>
+  	<servlet-class>com.Triz.SIMS.servlet.CourseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CourseServlet</servlet-name>
+  	<url-pattern>/CourseServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+  	<description>选课信息管理</description>
+  	<servlet-name>SelectedCourseServlet</servlet-name>
+  	<servlet-class>com.Triz.SIMS.servlet.SelectedCourseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>SelectedCourseServlet</servlet-name>
+  	<url-pattern>/SelectedCourseServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+   <servlet>
+  	<description>考勤信息管理</description>
+  	<servlet-name>AttendanceServlet</servlet-name>
+  	<servlet-class>com.Triz.SIMS.servlet.AttendanceServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AttendanceServlet</servlet-name>
+  	<url-pattern>/AttendanceServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<description>请假信息管理</description>
+  	<servlet-name>LeaveServlet</servlet-name>
+  	<servlet-class>com.Triz.SIMS.servlet.LeaveServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>LeaveServlet</servlet-name>
+  	<url-pattern>/LeaveServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<description>请假信息管理</description>
+  	<servlet-name>ScoreServlet</servlet-name>
+  	<servlet-class>com.Triz.SIMS.servlet.ScoreServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ScoreServlet</servlet-name>
+  	<url-pattern>/ScoreServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

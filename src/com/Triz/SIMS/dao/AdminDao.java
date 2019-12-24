@@ -7,7 +7,6 @@ import com.Triz.SIMS.model.Admin;
 import com.Triz.SIMS.model.Clazz;
 /**
  * 
- * @author Triz-X
  *管理员数据库操作封装
  */
 public class AdminDao extends BaseDao {
