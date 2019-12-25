@@ -49,7 +49,6 @@ public class TeacherDao extends BaseDao {
 				teacher.setPassword(resultSet.getString("password"));
 				teacher.setQq(resultSet.getString("qq"));
 				teacher.setSex(resultSet.getString("sex"));
-				teacher.setSn(resultSet.getString("sn"));
 				return teacher;
 			}
 		} catch (SQLException e) {
@@ -81,7 +80,6 @@ public class TeacherDao extends BaseDao {
 				t.setPassword(resultSet.getString("password"));
 				t.setQq(resultSet.getString("qq"));
 				t.setSex(resultSet.getString("sex"));
-				t.setSn(resultSet.getString("sn"));
 				ret.add(t);
 			}
 		} catch (SQLException e) {
@@ -124,7 +122,6 @@ public class TeacherDao extends BaseDao {
 				teacher.setMobile(resultSet.getString("mobile"));
 				teacher.setQq(resultSet.getString("qq"));
 				teacher.setSex(resultSet.getString("sex"));
-				teacher.setSn(resultSet.getString("sn"));
 				return teacher;
 			}
 		} catch (SQLException e) {

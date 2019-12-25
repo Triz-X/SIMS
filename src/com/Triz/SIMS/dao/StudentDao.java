@@ -49,7 +49,6 @@ public class StudentDao extends BaseDao {
 				student.setPassword(resultSet.getString("password"));
 				student.setQq(resultSet.getString("qq"));
 				student.setSex(resultSet.getString("sex"));
-				student.setSn(resultSet.getString("sn"));
 				return student;
 			}
 		} catch (SQLException e) {
@@ -81,7 +80,6 @@ public class StudentDao extends BaseDao {
 				s.setPassword(resultSet.getString("password"));
 				s.setQq(resultSet.getString("qq"));
 				s.setSex(resultSet.getString("sex"));
-				s.setSn(resultSet.getString("sn"));
 				ret.add(s);
 			}
 		} catch (SQLException e) {
@@ -125,7 +123,6 @@ public class StudentDao extends BaseDao {
 				student.setMobile(resultSet.getString("mobile"));
 				student.setQq(resultSet.getString("qq"));
 				student.setSex(resultSet.getString("sex"));
-				student.setSn(resultSet.getString("sn"));
 				return student;
 			}
 		} catch (SQLException e) {
