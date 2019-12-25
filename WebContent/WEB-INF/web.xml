@@ -32,10 +32,14 @@
   <filter-mapping>
   	<filter-name>LoginFilter</filter-name>
   	<url-pattern>/SystemServlet</url-pattern>
-  	<url-pattern>/AdminServlet</url-pattern>
   	<url-pattern>/StudentServlet</url-pattern>
   	<url-pattern>/TeacherServlet</url-pattern>
-  	<url-pattern>/GradeServlet</url-pattern>
+  	<url-pattern>/ClazzServlet</url-pattern>
+  	<url-pattern>/CourseServlet</url-pattern>
+  	<url-pattern>/SelectedCourseServlet</url-pattern>
+  	<url-pattern>/AttendanceServlet</url-pattern>
+  	<url-pattern>/LeaveServlet</url-pattern>
+  	<url-pattern>/ScoreServlet</url-pattern>
   </filter-mapping>
   
   <servlet>

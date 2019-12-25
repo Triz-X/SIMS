@@ -49,18 +49,14 @@ public class LeaveServlet extends HttpServlet {
 			deleteLeave(request,response);
 		}
 	}
-	private void deleteLeave(HttpServletRequest request,HttpServletResponse response) {
+	private void deleteLeave(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		LeaveDao leaveDao = new LeaveDao();
 		String msg = "success";
 		if(!leaveDao.deleteLeave(id)){
 			msg = "error";
 		}
-		try {
 			response.getWriter().write(msg);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 	private void checkLeave(HttpServletRequest request,HttpServletResponse response) {
 		int studentId = Integer.parseInt(request.getParameter("studentid"));
@@ -105,14 +101,12 @@ public class LeaveServlet extends HttpServlet {
 		try {
 			response.getWriter().write(msg);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			leaveDao.closeCon();
 		}
 	}
-	private void getLeaveList(HttpServletRequest request,HttpServletResponse response) {
-		// TODO Auto-generated method stub
+	private void getLeaveList(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		int studentId = request.getParameter("studentid") == null ? 0 : Integer.parseInt(request.getParameter("studentid").toString());
 		Integer currentPage = request.getParameter("page") == null ? 1 : Integer.parseInt(request.getParameter("page"));
 		Integer pageSize = request.getParameter("rows") == null ? 999 : Integer.parseInt(request.getParameter("rows"));
@@ -133,17 +127,13 @@ public class LeaveServlet extends HttpServlet {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		ret.put("total", total);
 		ret.put("rows", leaveList);
-		try {
 			String from = request.getParameter("from");
 			if("combox".equals(from)){
 				response.getWriter().write(JSONArray.fromObject(leaveList).toString());
 			}else{
 				response.getWriter().write(JSONObject.fromObject(ret).toString());
 			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
 	private void addLeave(HttpServletRequest request,HttpServletResponse response) {
 		int studentId = Integer.parseInt(request.getParameter("studentid"));

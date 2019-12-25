@@ -55,7 +55,6 @@ public class ScoreDao extends BaseDao {
 				return true;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;
@@ -68,7 +67,6 @@ public class ScoreDao extends BaseDao {
 	 * @return
 	 */
 	public List<Score> getScoreList(Score score, Page page) {
-		// TODO Auto-generated method stub
 		List<Score> ret = new ArrayList<Score>();
 		String sql = "select * from s_score ";
 		if(score.getStudentId() != 0){
@@ -91,7 +89,6 @@ public class ScoreDao extends BaseDao {
 				ret.add(s);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return ret;
@@ -125,7 +122,6 @@ public class ScoreDao extends BaseDao {
 				ret.add(s);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return ret;
@@ -137,7 +133,6 @@ public class ScoreDao extends BaseDao {
 	 * @return
 	 */
 	public int getScoreListTotal(Score score) {
-		// TODO Auto-generated method stub
 		int total = 0;
 		String sql = "select count(*) as total from s_score ";
 		if(score.getStudentId() != 0){
@@ -164,7 +159,6 @@ public class ScoreDao extends BaseDao {
 	 * @return
 	 */
 	public boolean deleteScore(int id) {
-		// TODO Auto-generated method stub
 		String sql = "delete from s_score where id = " + id;
 		return update(sql);
 	}

@@ -26,10 +26,10 @@ import net.sf.json.JSONObject;
 
 
 public class ClazzServlet extends HttpServlet {
-	public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException{
 		doPost(request, response);
 	}
-	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException{
 		String method = request.getParameter("method");
 		if("toClazzListView".equals(method)){
 			clazzList(request,response);
@@ -93,16 +93,11 @@ public class ClazzServlet extends HttpServlet {
 		}
 		
 	}
-	private void clazzList(HttpServletRequest request,HttpServletResponse response)  {
-		try {
+	private void clazzList(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 			request.getRequestDispatcher("MVC-View/clazzList.jsp").forward(request, response);
-		} catch (ServletException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 	}
-	private void getClazzList(HttpServletRequest request,HttpServletResponse response){
+	private void getClazzList(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		String name = request.getParameter("clazzName");
 		Integer currentPage = request.getParameter("page") == null ? 1 : Integer.parseInt(request.getParameter("page"));
 		Integer pageSize = request.getParameter("rows") == null ? 999 : Integer.parseInt(request.getParameter("rows"));
@@ -116,16 +111,12 @@ public class ClazzServlet extends HttpServlet {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		ret.put("total", total);
 		ret.put("rows", clazzList);
-		try {
 			String from = request.getParameter("from");
 			if("combox".equals(from)){
 				response.getWriter().write(JSONArray.fromObject(clazzList).toString());
 			}else{
 				response.getWriter().write(JSONObject.fromObject(ret).toString());
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 }
 

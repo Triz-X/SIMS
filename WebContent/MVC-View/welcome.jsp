@@ -11,6 +11,9 @@
 <div title="欢迎使用" style="padding:20px;overflow:hidden; " >
 	<p style="font-size: 25px; line-height: 30px; height: 30px;">欢迎使用学生信息管理系统</p>
 	<hr />
+	
+  	<hr /><br><br><br>
+  	<p style="color:red; font-size: 22px; line-height: 30px; height: 30px; ">${notice.noticeStudent}</p>
   	<p style="font-size: 20px; line-height: 30px; height: 30px;">开发团队：Triz-X<br><br></p>
   	<p style="font-size: 18px; line-height: 30px; height: 30px;">团队人员：张聪、高璇、郝立萌、王录阳、杨晨曦</p>
 </div>

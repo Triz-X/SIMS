@@ -137,7 +137,7 @@
             	$.messager.alert("消息提醒", "请选择数据进行删除!", "warning");
             } else{
             	var id = selectRow.id;
-            	$.messager.confirm("消息提醒", "确定删除成绩么，确认继续？", function(r){
+            	$.messager.confirm("消息提醒", "确定删除成绩吗，确认继续？", function(r){
             		if(r){
             			$.ajax({
 							type: "post",
@@ -149,7 +149,7 @@
 									//刷新表格
 									$("#dataList").datagrid("reload");
 								}else if(msg == "not found"){
-									$.messager.alert("消息提醒","不存在该选课记录!","info");
+									$.messager.alert("消息提醒","不存在该记录!","info");
 								}else{
 									$.messager.alert("消息提醒","删除失败!","warning");
 									return;
@@ -190,7 +190,7 @@
 								data: $("#addForm").serialize(),
 								success: function(msg){
 									if(msg == "success"){
-										$.messager.alert("消息提醒","选课信息添加成功!","info");
+										$.messager.alert("消息提醒","课程成绩添加成功!","info");
 										//关闭窗口
 										$("#addDialog").dialog("close");
 										//清空原表格数据
@@ -249,7 +249,7 @@
 								data: $("#editForm").serialize(),
 								success: function(msg){
 									if(msg == "success"){
-										$.messager.alert("消息提醒","选课信息添加成功!","info");
+										$.messager.alert("消息提醒","成绩信息修改成功!","info");
 										//关闭窗口
 										$("#editDialog").dialog("close");
 										//清空原表格数据

@@ -35,27 +35,23 @@ import com.lizhou.fileload.FileUpload;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-
+/**
+ * 
+ *学生成绩管理功能实现servlet
+ */
 public class ScoreServlet extends HttpServlet {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -153736421631912372L;
+	private static final long serialVersionUID = 1L;
 	
 	
 
-	public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException{
 		doPost(request, response);
 	}
-	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException{
 		String method = request.getParameter("method");
 		if("toScoreListView".equals(method)){
-			try {
 				request.getRequestDispatcher("MVC-View/scoreList.jsp").forward(request, response);
-			} catch (ServletException e) {
-				e.printStackTrace();
-			}
 		}else if("AddScore".equals(method)){
 			addScore(request,response);
 		}else if("ScoreList".equals(method)){
@@ -70,21 +66,20 @@ public class ScoreServlet extends HttpServlet {
 			exportScore(request,response);
 		}
 	}
-	private void exportScore(HttpServletRequest request,HttpServletResponse response) {
-		int Id = request.getParameter("id") == null ? 0 : Integer.parseInt(request.getParameter("id").toString());
+	private void exportScore(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		int studentId = request.getParameter("studentid") == null ? 0 : Integer.parseInt(request.getParameter("studentid").toString());
 		int courseId = request.getParameter("courseid") == null ? 0 : Integer.parseInt(request.getParameter("courseid").toString());
 		//获取当前登录用户类型
 		int userType = Integer.parseInt(request.getSession().getAttribute("userType").toString());
 		if(userType == 2){
 			//如果是学生，只能查看自己的信息
 			Student currentUser = (Student)request.getSession().getAttribute("user");
-			Id = currentUser.getId();
+			studentId = currentUser.getId();
 		}
 		Score score = new Score();
-		score.setId(Id);
+		score.setStudentId(studentId);
 		score.setCourseId(courseId);
-		try {
-			response.setHeader("Content-Disposition", "attachment;filename="+URLEncoder.encode("score_list_sid_"+Id+"_cid_"+courseId+".xls", "UTF-8"));
+			response.setHeader("Content-Disposition", "attachment;filename="+URLEncoder.encode("score_list_sid_"+studentId+"_cid_"+courseId+".xls", "UTF-8"));
 			response.setHeader("Connection", "close");
 			response.setHeader("Content-Type", "application/octet-stream");
 			ServletOutputStream outputStream = response.getOutputStream();
@@ -103,7 +98,7 @@ public class ScoreServlet extends HttpServlet {
 			int row = 1;
 			for(Map<String, Object> entry:scoreList){
 				createRow = createSheet.createRow(row++);
-				createRow.createCell(0).setCellValue(entry.get("id").toString());
+				createRow.createCell(0).setCellValue(entry.get("studentId").toString());
 				createRow.createCell(1).setCellValue(entry.get("studentName").toString());
 				createRow.createCell(2).setCellValue(entry.get("courseName").toString());
 				createRow.createCell(3).setCellValue(new Double(entry.get("score")+""));
@@ -112,9 +107,6 @@ public class ScoreServlet extends HttpServlet {
 			hssfWorkbook.write(outputStream);
 			outputStream.flush();
 			outputStream.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 	private void importScore(HttpServletRequest request,HttpServletResponse response) {
 		FileUpload fileUpload = new FileUpload(request);
@@ -259,8 +251,7 @@ public class ScoreServlet extends HttpServlet {
 			e5.printStackTrace();
 		}
 	}
-	private void deleteScore(HttpServletRequest request,
-			HttpServletResponse response) {
+	private void deleteScore(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		ScoreDao scoreDao = new ScoreDao();
 		String msg = "success";
@@ -268,14 +259,10 @@ public class ScoreServlet extends HttpServlet {
 			msg = "error";
 		}
 		scoreDao.closeCon();
-		try {
 			response.getWriter().write(msg);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 	}
-	private void editScore(HttpServletRequest request,
-			HttpServletResponse response) {
+	private void editScore(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		int studentId = request.getParameter("studentid") == null ? 0 : Integer.parseInt(request.getParameter("studentid").toString());
 		int courseId = request.getParameter("courseid") == null ? 0 : Integer.parseInt(request.getParameter("courseid").toString());
@@ -292,13 +279,10 @@ public class ScoreServlet extends HttpServlet {
 		if(!scoreDao.editScore(score)){
 			ret = "error";
 		}
-		try {
+
 			response.getWriter().write(ret);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
-	private void getScoreList(HttpServletRequest request,HttpServletResponse response) {
+	private void getScoreList(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		int studentId = request.getParameter("studentid") == null ? 0 : Integer.parseInt(request.getParameter("studentid").toString());
 		int courseId = request.getParameter("courseid") == null ? 0 : Integer.parseInt(request.getParameter("courseid").toString());
 		Integer currentPage = request.getParameter("page") == null ? 1 : Integer.parseInt(request.getParameter("page"));
@@ -321,18 +305,16 @@ public class ScoreServlet extends HttpServlet {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		ret.put("total", total);
 		ret.put("rows", courseList);
-		try {
+		
 			String from = request.getParameter("from");
 			if("combox".equals(from)){
 				response.getWriter().write(JSONArray.fromObject(courseList).toString());
 			}else{
 				response.getWriter().write(JSONObject.fromObject(ret).toString());
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 	}
-	private void addScore(HttpServletRequest request,HttpServletResponse response) {
+	private void addScore(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		int studentId = request.getParameter("studentid") == null ? 0 : Integer.parseInt(request.getParameter("studentid").toString());
 		int courseId = request.getParameter("courseid") == null ? 0 : Integer.parseInt(request.getParameter("courseid").toString());
 		Double scoreNum = Double.parseDouble(request.getParameter("score"));
@@ -356,10 +338,6 @@ public class ScoreServlet extends HttpServlet {
 		if(!scoreDao.addScore(score)){
 			ret = "error";
 		}
-		try {
 			response.getWriter().write(ret);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 }

@@ -24,7 +24,7 @@ public class LoginServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5870852067427524781L;
+	private static final long serialVersionUID = 1L;
 	
 	public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		doPost(request, response);

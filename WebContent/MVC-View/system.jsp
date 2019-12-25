@@ -66,6 +66,7 @@
 						{"menuid":"5","icon":"","menuname":"系统管理",
 							"menus":[
 							        {"menuid":"51","menuname":"修改密码","icon":"icon-set","url":"SystemServlet?method=toPersonalView"},
+							      
 								]
 						}
 				]};
@@ -84,7 +85,7 @@
         background: url(images/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%;
         line-height: 20px;color: #fff; font-family: Verdana, 微软雅黑,黑体">
         <span style="float:right; padding-right:20px;" class="head"><span style="color:red; font-weight:bold;">${user.name}&nbsp;</span>您好&nbsp;&nbsp;&nbsp;<a href="LoginServlet?method=logout" id="loginOut">安全退出</a></span>
-        <span style="padding-left:10px; font-size: 16px; ">学生信息管理系统</span>
+        <span style="padding-left:10px; font-size: 16px; ">高校班级信息管理系统</span>
     </div>
     <div region="south" split="true" style="height: 30px; background: #D2E0F2; ">
         <div class="footer">Copyright &copy; By Triz-X</div>
@@ -101,7 +102,6 @@
 		</div>
     </div>
 	
-	<iframe width=0 height=0 src="refresh.jsp"></iframe>
 	
 </body>
 </html>

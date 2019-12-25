@@ -24,10 +24,10 @@ import com.Triz.SIMS.util.SnGenerateUtil;
  *学生信息管理功能实现servlet
  */
 public class StudentServlet extends HttpServlet {
-	public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException{
 		doPost(request, response);
 	}
-	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException{
 		String method = request.getParameter("method");
 		if("toStudentListView".equals(method)){
 			studentList(request,response);
@@ -84,7 +84,7 @@ public class StudentServlet extends HttpServlet {
 			}
 		}
 	}
-	private void getStudentList(HttpServletRequest request,HttpServletResponse response) {
+	private void getStudentList(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		String name = request.getParameter("studentName");
 		Integer currentPage = request.getParameter("page") == null ? 1 : Integer.parseInt(request.getParameter("page"));
 		Integer pageSize = request.getParameter("rows") == null ? 999 : Integer.parseInt(request.getParameter("rows"));
@@ -107,16 +107,13 @@ public class StudentServlet extends HttpServlet {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		ret.put("total", total);
 		ret.put("rows", clazzList);
-		try {
 			String from = request.getParameter("from");
 			if("combox".equals(from)){
 				response.getWriter().write(JSONArray.fromObject(clazzList).toString());
 			}else{
 				response.getWriter().write(JSONObject.fromObject(ret).toString());
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 	}
 	private void addStudent(HttpServletRequest request,HttpServletResponse response) {
 		String name = request.getParameter("name");
@@ -144,11 +141,8 @@ public class StudentServlet extends HttpServlet {
 			}
 		}
 	}
-	private void studentList(HttpServletRequest request,HttpServletResponse response) throws IOException {
-		try {
+	private void studentList(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
 			request.getRequestDispatcher("MVC-View/studentList.jsp").forward(request, response);
-		} catch (ServletException e) {
-			e.printStackTrace();
-		}
+		
 	}
 }

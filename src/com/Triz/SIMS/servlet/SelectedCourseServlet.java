@@ -25,19 +25,15 @@ public class SelectedCourseServlet extends HttpServlet {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7120913402001186955L;
+	private static final long serialVersionUID = 1L;
 
-	public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException{
 		doPost(request, response);
 	}
-	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException{
 		String method = request.getParameter("method");
 		if("toSelectedCourseListView".equals(method)){
-			try {
 				request.getRequestDispatcher("MVC-View/selectedCourseList.jsp").forward(request, response);
-			} catch (ServletException e) {
-				e.printStackTrace();
-			}
 		}else if("AddSelectedCourse".equals(method)){
 			addSelectedCourse(request,response);
 		}else if("SelectedCourseList".equals(method)){
@@ -46,8 +42,7 @@ public class SelectedCourseServlet extends HttpServlet {
 			deleteSelectedCourse(request,response);
 		}
 	}
-	private void deleteSelectedCourse(HttpServletRequest request,
-			HttpServletResponse response) throws IOException {
+	private void deleteSelectedCourse(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		SelectedCourseDao selectedCourseDao = new SelectedCourseDao();
 		SelectedCourse selectedCourse = selectedCourseDao.getSelectedCourse(id);
@@ -68,8 +63,7 @@ public class SelectedCourseServlet extends HttpServlet {
 		selectedCourseDao.closeCon();
 		response.getWriter().write(msg);
 	}
-	private void addSelectedCourse(HttpServletRequest request,
-			HttpServletResponse response) throws IOException {
+	private void addSelectedCourse(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		int studentId = request.getParameter("studentid") == null ? 0 : Integer.parseInt(request.getParameter("studentid").toString());
 		int courseId = request.getParameter("courseid") == null ? 0 : Integer.parseInt(request.getParameter("courseid").toString());
 		CourseDao courseDao = new CourseDao();
@@ -98,8 +92,7 @@ public class SelectedCourseServlet extends HttpServlet {
 		selectedCourseDao.closeCon();
 		response.getWriter().write(msg);
 	}
-	private void getSelectedCourseList(HttpServletRequest request,
-			HttpServletResponse response) {
+	private void getSelectedCourseList(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		int studentId = request.getParameter("studentid") == null ? 0 : Integer.parseInt(request.getParameter("studentid").toString());
 		int courseId = request.getParameter("courseid") == null ? 0 : Integer.parseInt(request.getParameter("courseid").toString());
 		Integer currentPage = request.getParameter("page") == null ? 1 : Integer.parseInt(request.getParameter("page"));
@@ -120,16 +113,13 @@ public class SelectedCourseServlet extends HttpServlet {
 		Map<String, Object> ret = new HashMap<String, Object>();
 		ret.put("total", total);
 		ret.put("rows", courseList);
-		try {
 			String from = request.getParameter("from");
 			if("combox".equals(from)){
 				response.getWriter().write(JSONArray.fromObject(courseList).toString());
 			}else{
 				response.getWriter().write(JSONObject.fromObject(ret).toString());
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 	}
 }
 

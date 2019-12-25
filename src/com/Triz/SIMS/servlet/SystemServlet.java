@@ -22,12 +22,12 @@ import com.Triz.SIMS.model.Teacher;
 public class SystemServlet extends HttpServlet {
 
 	
-	private static final long serialVersionUID = -7258264317769166483L;
+	private static final long serialVersionUID = 1L;
 	
-	public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException{
 		doPost(request, response);
 	}
-	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException{
 		String method = request.getParameter("method");
 		if("toPersonalView".equals(method)){
 			personalView(request,response);
@@ -36,14 +36,11 @@ public class SystemServlet extends HttpServlet {
 			editPassword(request,response);
 			return;
 		}
-		try {
 			request.getRequestDispatcher("MVC-View/system.jsp").forward(request, response);
-		} catch (ServletException e) {
-			e.printStackTrace();
-		}
+		
 	}
-	private void editPassword(HttpServletRequest request,
-			HttpServletResponse response) {
+	
+	private void editPassword(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		String password = request.getParameter("password");
 		String newPassword = request.getParameter("newpassword");
 		response.setCharacterEncoding("UTF-8");
@@ -52,12 +49,9 @@ public class SystemServlet extends HttpServlet {
 
 			Admin admin = (Admin)request.getSession().getAttribute("user");
 			if(!admin.getPassword().equals(password)){
-				try {
 					response.getWriter().write("");
 					return;
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				
 			}
 			AdminDao adminDao = new AdminDao();
 			if(adminDao.editPassword(admin, newPassword)){
@@ -142,14 +136,9 @@ public class SystemServlet extends HttpServlet {
 			}
 		}
 	}
-	private void personalView(HttpServletRequest request,
-			HttpServletResponse response) {
-		try {
+	private void personalView(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+		
 			request.getRequestDispatcher("MVC-View/personalView.jsp").forward(request, response);
-		} catch (ServletException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 	}
 }

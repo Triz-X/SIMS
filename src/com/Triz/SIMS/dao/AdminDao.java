@@ -31,4 +31,5 @@ public class AdminDao extends BaseDao {
 		String sql = "update s_admin set password = '"+newPassword+"' where id = " + admin.getId();
 		return update(sql);
 	}
+	
 }

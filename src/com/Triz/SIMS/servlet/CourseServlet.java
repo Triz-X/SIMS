@@ -25,17 +25,15 @@ public class CourseServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = -1991371597134855732L;
 	
-	public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException{
 		doPost(request, response);
 	}
-	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException{
 		String method = request.getParameter("method");
 		if("toCourseListView".equals(method)){
-			try {
+
 				request.getRequestDispatcher("MVC-View/courseList.jsp").forward(request, response);
-			} catch (ServletException e) {
-				e.printStackTrace();
-			}
+			
 		}else if("AddCourse".equals(method)){
 			addCourse(request,response);
 		}else if("CourseList".equals(method)){
@@ -65,8 +63,7 @@ public class CourseServlet extends HttpServlet {
 			}
 		}
 	}
-	private void editCourse(HttpServletRequest request,
-			HttpServletResponse response) {
+	private void editCourse(HttpServletRequest request,HttpServletResponse response) {
 		String name = request.getParameter("name");
 		int teacherId = Integer.parseInt(request.getParameter("teacherid").toString());
 		int maxNum = Integer.parseInt(request.getParameter("maxnum").toString());
@@ -93,8 +90,7 @@ public class CourseServlet extends HttpServlet {
 			courseDao.closeCon();
 		}
 	}
-	private void getCourseList(HttpServletRequest request,
-			HttpServletResponse response) {
+	private void getCourseList(HttpServletRequest request,HttpServletResponse response) {
 		String name = request.getParameter("name");
 		int teacherId = request.getParameter("teacherid") == null ? 0 : Integer.parseInt(request.getParameter("teacherid").toString());
 		Integer currentPage = request.getParameter("page") == null ? 1 : Integer.parseInt(request.getParameter("page"));

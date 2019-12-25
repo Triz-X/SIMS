@@ -23,24 +23,20 @@ import com.Triz.SIMS.model.Page;
 import com.Triz.SIMS.model.SelectedCourse;
 import com.Triz.SIMS.model.Student;
 import com.Triz.SIMS.util.DateFormatUtil;
-
+/**
+ * 
+ *学生考勤管理功能实现servlet
+ */
 public class AttendanceServlet extends HttpServlet{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
-	public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException{
 		doPost(request, response);
 	}
-	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException{
 		String method = request.getParameter("method");
 		if("toAttendanceServletListView".equals(method)){
-			try {
 				request.getRequestDispatcher("MVC-View/attendanceList.jsp").forward(request, response);
-			} catch (ServletException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}else if("AddAttendance".equals(method)){
 			AddAttendance(request,response);
 		}else if("AttendanceList".equals(method)){
@@ -51,9 +47,7 @@ public class AttendanceServlet extends HttpServlet{
 			getStudentSelectedCourseList(request, response);
 		}
 	}
-	private void deleteAttendance(HttpServletRequest request,
-			HttpServletResponse response) throws IOException {
-		// TODO Auto-generated method stub
+	private void deleteAttendance(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		AttendanceDao attendanceDao = new AttendanceDao();
 		String msg = "success";
@@ -63,9 +57,7 @@ public class AttendanceServlet extends HttpServlet{
 		attendanceDao.closeCon();
 		response.getWriter().write(msg);
 	}
-	private void attendanceList(HttpServletRequest request,
-			HttpServletResponse response) {
-		// TODO Auto-generated method stub
+	private void attendanceList(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		int studentId = request.getParameter("studentid") == null ? 0 : Integer.parseInt(request.getParameter("studentid").toString());
 		int courseId = request.getParameter("courseid") == null ? 0 : Integer.parseInt(request.getParameter("courseid").toString());
 		String type = request.getParameter("type");
@@ -92,21 +84,14 @@ public class AttendanceServlet extends HttpServlet{
 		Map<String, Object> ret = new HashMap<String, Object>();
 		ret.put("total", total);
 		ret.put("rows", attendanceList);
-		try {
 			String from = request.getParameter("from");
 			if("combox".equals(from)){
 				response.getWriter().write(JSONArray.fromObject(attendanceList).toString());
 			}else{
 				response.getWriter().write(JSONObject.fromObject(ret).toString());
 			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
-	private void AddAttendance(HttpServletRequest request,
-			HttpServletResponse response) {
-		// TODO Auto-generated method stub
+	private void AddAttendance(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		int studentId = request.getParameter("studentid") == null ? 0 : Integer.parseInt(request.getParameter("studentid").toString());
 		int courseId = request.getParameter("courseid") == null ? 0 : Integer.parseInt(request.getParameter("courseid").toString());
 		String type = request.getParameter("type").toString();
@@ -122,17 +107,11 @@ public class AttendanceServlet extends HttpServlet{
 			msg = "已签到，请勿重复签到！";
 		}else if(!attendanceDao.addAttendance(attendance)){
 			msg = "系统内部出错。请联系管理员！";
-		}
-		try {
-			response.getWriter().write(msg);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		}	
+		response.getWriter().write(msg);
+		
 	}
-	private void getStudentSelectedCourseList(HttpServletRequest request,
-			HttpServletResponse response) {
-		// TODO Auto-generated method stub
+	private void getStudentSelectedCourseList(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		int studentId = request.getParameter("student_id") == null ? 0 : Integer.parseInt(request.getParameter("student_id").toString());
 		SelectedCourse selectedCourse = new SelectedCourse();
 		selectedCourse.setStudentId(studentId);
@@ -148,11 +127,6 @@ public class AttendanceServlet extends HttpServlet{
 		List<Course> courseList = courseDao.getCourse(courseId);
 		courseDao.closeCon();
 		response.setCharacterEncoding("UTF-8");
-		try {
 			response.getWriter().write(JSONArray.fromObject(courseList).toString());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 }

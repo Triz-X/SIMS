@@ -138,7 +138,6 @@
 		  		}
 		  	});
 	  	}
-	  	
 	  	//下拉框通用属性
 	  	$("#add_clazzList, #edit_clazzList").combobox({
 	  		width: "200",
@@ -149,8 +148,6 @@
 	  		editable: false, //不可编辑
 	  		method: "post",
 	  	});
-	  	
-	  	
 	  	$("#add_clazzList").combobox({
 	  		url: "ClazzServlet?method=getClazzList&t="+new Date().getTime()+"&from=combox",
 	  		onLoadSuccess: function(){
@@ -159,8 +156,6 @@
 				$(this).combobox("setValue", data[0].id);
 	  		}
 	  	});
-	  	
-	  	
 	  	
 	  	$("#edit_clazzList").combobox({
 	  		url: "ClazzServlet?method=getClazzList&t="+new Date().getTime()+"&from=combox",
@@ -210,7 +205,6 @@
 										$("#add_sex").textbox('setValue', "男");
 										$("#add_phone").textbox('setValue', "");
 										$("#add_qq").textbox('setValue', "");
-										
 										//重新刷新页面数据
 										$('#dataList').datagrid("options").queryParams = {clazzid: clazzid};
 							  			$('#dataList').datagrid("reload");
@@ -337,7 +331,6 @@
 <body>
 	<!-- 学生列表 -->
 	<table id="dataList" cellspacing="0" cellpadding="0"> 
-	    
 	</table> 
 	<!-- 工具栏 -->
 	<div id="toolbar">
@@ -354,9 +347,7 @@
 		<div style="margin-left: 10px;margin-top:4px;" >班级：<input id="clazzList" class="easyui-textbox" name="clazz" />
 			<a id="search-btn" href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true">搜索</a>
 		</div>
-	
 	</div>
-	
 	<!-- 添加学生窗口 -->
 	<div id="addDialog" style="padding: 10px">  
     	<form id="addForm" method="post">
@@ -390,10 +381,8 @@
 	    	</table>
 	    </form>
 	</div>
-	
 	<!-- 修改学生窗口 -->
 	<div id="editDialog" style="padding: 10px">
-		
     	<form id="editForm" method="post">
 	    	<input type="hidden" name="id" id="edit-id">
 	    	<table cellpadding="8" >

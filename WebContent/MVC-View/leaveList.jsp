@@ -85,9 +85,7 @@
 		  		method: "post",
 		  		url: "StudentServlet?method=StudentList&t="+new Date().getTime()+"&from=combox",
 		  		onChange: function(newValue, oldValue){
-		  			//加载班级下的学生
-		  			//$('#dataList').datagrid("options").queryParams = {clazzid: newValue};
-		  			//$('#dataList').datagrid("reload");
+		  			
 		  		}
 		  	});
 	  	}
@@ -432,7 +430,7 @@
 	</table> 
 	<!-- 工具栏 -->
 	<div id="toolbar">
-		<div style="float: left;"><a id="add" href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">添加</a></div>
+		<div style="float: left;"><a id="add" href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">申请</a></div>
 		<div style="float: left;" class="datagrid-btn-separator"></div>
 		<c:if test="${userType == 2}">
 		<div style="float: left;"><a id="edit" href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true">修改</a></div>
