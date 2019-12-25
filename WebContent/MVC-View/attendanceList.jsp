@@ -30,7 +30,7 @@
 	        remoteSort: false,
 	        columns: [[  
 				{field:'chk',checkbox: true,width:50},
- 		        {field:'id',title:'ID',width:50, sortable: true},    
+ 		        {field:'id',title:'顺序号',width:50, sortable: true},    
  		        {field:'studentId',title:'学生',width:200,
  		        	formatter: function(value,row,index){
  						if (row.studentId){

@@ -30,7 +30,7 @@
 	        remoteSort: false,
 	        columns: [[  
 				{field:'chk',checkbox: true,width:50},
- 		        {field:'id',title:'ID',width:50, sortable: true},    
+ 		        {field:'id',title:'班级号',width:50, sortable: true},    
  		        {field:'name',title:'班级名称',width:200},
  		        {field:'info',title:'班级介绍',width:100, 
  		        },

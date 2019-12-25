@@ -21,7 +21,7 @@ import com.Triz.SIMS.dao.TeacherDao;
 import com.Triz.SIMS.model.Page;
 import com.Triz.SIMS.model.Student;
 import com.Triz.SIMS.model.Teacher;
-import com.Triz.SIMS.util.SnGenerateUtil;
+
 
 public class TeacherServlet extends HttpServlet {
 
@@ -42,8 +42,7 @@ public class TeacherServlet extends HttpServlet {
 			deleteTeacher(request,response);
 		}
 	}
-	private void deleteTeacher(HttpServletRequest request,
-			HttpServletResponse response) {
+	private void deleteTeacher(HttpServletRequest request,HttpServletResponse response) {
 		String[] ids = request.getParameterValues("ids[]");
 		String idStr = "";
 		for(String id : ids){
@@ -61,8 +60,7 @@ public class TeacherServlet extends HttpServlet {
 			}
 		}
 	}
-	private void editTeacher(HttpServletRequest request,
-			HttpServletResponse response) {
+	private void editTeacher(HttpServletRequest request,HttpServletResponse response) {
 		String name = request.getParameter("name");
 		int id = Integer.parseInt(request.getParameter("id"));
 		String sex = request.getParameter("sex");
@@ -132,7 +130,7 @@ public class TeacherServlet extends HttpServlet {
 		teacher.setPassword(password);
 		teacher.setQq(qq);
 		teacher.setSex(sex);
-		teacher.setSn(SnGenerateUtil.generateTeacherSn(clazzId));
+
 		TeacherDao teacherDao = new TeacherDao();
 		if(teacherDao.addTeacher(teacher)){
 			try {

@@ -31,8 +31,7 @@
 	        remoteSort: false,
 	        columns: [[  
 				{field:'chk',checkbox: true,width:50},
- 		        {field:'id',title:'ID',width:50, sortable: true},    
- 		        {field:'sn',title:'学号',width:200, sortable: true},    
+ 		        {field:'id',title:'学号',width:50, sortable: true},      
  		        {field:'name',title:'姓名',width:200},
  		        {field:'sex',title:'性别',width:100},
  		        {field:'mobile',title:'电话',width:150},

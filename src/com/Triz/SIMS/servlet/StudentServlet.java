@@ -18,7 +18,6 @@ import com.Triz.SIMS.dao.StudentDao;
 import com.Triz.SIMS.model.Clazz;
 import com.Triz.SIMS.model.Page;
 import com.Triz.SIMS.model.Student;
-import com.Triz.SIMS.util.SnGenerateUtil;
 /**
  * 
  *学生信息管理功能实现servlet
@@ -129,7 +128,6 @@ public class StudentServlet extends HttpServlet {
 		student.setPassword(password);
 		student.setQq(qq);
 		student.setSex(sex);
-		student.setSn(SnGenerateUtil.generateSn(clazzId));
 		StudentDao studentDao = new StudentDao();
 		if(studentDao.addStudent(student)){
 			try {

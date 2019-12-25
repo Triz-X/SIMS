@@ -33,8 +33,7 @@
 	        remoteSort: false,
 	        columns: [[  
 				{field:'chk',checkbox: true,width:50},
- 		        {field:'id',title:'ID',width:50, sortable: true},    
- 		        {field:'sn',title:'工号',width:150, sortable: true},    
+ 		        {field:'id',title:'工号',width:50, sortable: true},       
  		        {field:'name',title:'姓名',width:150},
  		        {field:'sex',title:'性别',width:100},
  		        {field:'mobile',title:'电话',width:150},
@@ -323,9 +322,7 @@
 						$("#edit_name").textbox('setValue', "");
 						$("#edit_phone").textbox('setValue', "");
 						$("#edit_qq").textbox('setValue', "");
-						
-						$(table).find(".chooseTr").remove();
-						
+						$(table).find(".chooseTr").remove();	
 					}
 				},
 			],
